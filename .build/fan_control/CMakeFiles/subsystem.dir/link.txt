@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/subsystem.dir/src/main.cpp.o  -o subsystem  ../lib/serialization/libserialization.a 

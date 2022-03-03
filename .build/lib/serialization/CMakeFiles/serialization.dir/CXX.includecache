@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../lib/serialization/include/serialization/serialization.hpp
+stdio.h
+-
+ctype.h
+-
+stdint.h
+-
+inttypes.h
+-
+string.h
+-
+
+/home/joe_zhai/Intuitive/lib/serialization/src/serialization.cpp
+serialization/serialization.hpp
+/home/joe_zhai/Intuitive/lib/serialization/src/serialization/serialization.hpp
+
