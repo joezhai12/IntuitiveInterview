@@ -6,16 +6,8 @@
 
 #IncludeRegexTransform: 
 
-../lib/serialization/include/serialization/serialization.hpp
-stdio.h
--
-ctype.h
--
-stdint.h
--
-inttypes.h
--
-string.h
+../test_subsystem/include/subsystem.hpp
+vector
 -
 
 /home/joe_zhai/Intuitive/test_subsystem/src/main.cpp
@@ -47,6 +39,8 @@ chrono
 -
 thread
 -
-serialization/serialization.hpp
-/home/joe_zhai/Intuitive/test_subsystem/src/serialization/serialization.hpp
+cstring
+-
+subsystem.hpp
+/home/joe_zhai/Intuitive/test_subsystem/src/subsystem.hpp
 

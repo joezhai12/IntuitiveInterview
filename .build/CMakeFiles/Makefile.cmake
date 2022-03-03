@@ -12,8 +12,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.16.3/CMakeSystem.cmake"
   "../CMakeLists.txt"
   "../fan_control/CMakeLists.txt"
-  "../lib/CMakeLists.txt"
-  "../lib/serialization/CMakeLists.txt"
   "../test_subsystem/CMakeLists.txt"
   "/usr/share/cmake-3.16/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake"
@@ -45,15 +43,12 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "lib/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "lib/serialization/CMakeFiles/CMakeDirectoryInformation.cmake"
   "fan_control/CMakeFiles/CMakeDirectoryInformation.cmake"
   "test_subsystem/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "lib/serialization/CMakeFiles/serialization.dir/DependInfo.cmake"
   "fan_control/CMakeFiles/fan_controller.dir/DependInfo.cmake"
   "test_subsystem/CMakeFiles/subsystem.dir/DependInfo.cmake"
   )

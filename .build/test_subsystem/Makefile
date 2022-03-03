@@ -198,6 +198,33 @@ src/main.cpp.s:
 	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f test_subsystem/CMakeFiles/subsystem.dir/build.make test_subsystem/CMakeFiles/subsystem.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/subsystem.o: src/subsystem.cpp.o
+
+.PHONY : src/subsystem.o
+
+# target to build an object file
+src/subsystem.cpp.o:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f test_subsystem/CMakeFiles/subsystem.dir/build.make test_subsystem/CMakeFiles/subsystem.dir/src/subsystem.cpp.o
+.PHONY : src/subsystem.cpp.o
+
+src/subsystem.i: src/subsystem.cpp.i
+
+.PHONY : src/subsystem.i
+
+# target to preprocess a source file
+src/subsystem.cpp.i:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f test_subsystem/CMakeFiles/subsystem.dir/build.make test_subsystem/CMakeFiles/subsystem.dir/src/subsystem.cpp.i
+.PHONY : src/subsystem.cpp.i
+
+src/subsystem.s: src/subsystem.cpp.s
+
+.PHONY : src/subsystem.s
+
+# target to generate assembly for a file
+src/subsystem.cpp.s:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f test_subsystem/CMakeFiles/subsystem.dir/build.make test_subsystem/CMakeFiles/subsystem.dir/src/subsystem.cpp.s
+.PHONY : src/subsystem.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -214,6 +241,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/subsystem.o"
+	@echo "... src/subsystem.i"
+	@echo "... src/subsystem.s"
 .PHONY : help
 
 

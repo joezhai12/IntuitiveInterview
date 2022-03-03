@@ -1,6 +1,6 @@
 #pragma once
 
-#include <unordered_map>
+#include <vector>
 
 struct Subsystem{
   float temperature;
@@ -15,11 +15,9 @@ struct Subsystem{
  */
 class SubsystemManager{
 public:
-  SubsystemManager(size_t count){
+  SubsystemManager(size_t count);
 
-  }
-
-  Subsystem() = delete;
+  void cycle(unsigned char *buffer);
 private:
-  std::unordered_map<size_t, Subsystem*> subsystems_;
+  std::vector<Subsystem> subsystems_;
 };

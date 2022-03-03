@@ -157,19 +157,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named serialization
-
-# Build rule for target.
-serialization: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 serialization
-.PHONY : serialization
-
-# fast build rule for target.
-serialization/fast:
-	$(MAKE) -f lib/serialization/CMakeFiles/serialization.dir/build.make lib/serialization/CMakeFiles/serialization.dir/build
-.PHONY : serialization/fast
-
-#=============================================================================
 # Target rules for targets named fan_controller
 
 # Build rule for target.
@@ -207,7 +194,6 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... serialization"
 	@echo "... fan_controller"
 	@echo "... subsystem"
 .PHONY : help

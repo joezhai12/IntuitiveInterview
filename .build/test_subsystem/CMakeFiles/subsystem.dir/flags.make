@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/joe_zhai/Intuitive/lib/serialization/include 
+CXX_INCLUDES = -I/home/joe_zhai/Intuitive/test_subsystem/include 
 

@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/fan_controller.dir/src/main.cpp.o  -o fan_controller  ../lib/serialization/libserialization.a 
+/usr/bin/c++     CMakeFiles/fan_controller.dir/src/main.cpp.o  -o fan_controller 

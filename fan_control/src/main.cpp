@@ -14,21 +14,20 @@
 #include <cstring>
 #include <chrono>
 #include <thread>
-#include "serialization/serialization.hpp"
-
-#define BUFSIZE 256
 
 #define USAGE                                                        \
   "usage:\n"                                                         \
   "  echoserver [options]\n"                                         \
   "options:\n"                                                       \
   "  -p                  Port (Default: 10823)\n"                    \
+  "  -n                  Number of Fans (Default: 1)\n"              \
   "  -h                  Show this help message\n"
 
 /* OPTIONS DESCRIPTOR ====================================================== */
 static struct option g_long_options[] = {
     {"help", no_argument, NULL, 'h'},
     {"port", required_argument, NULL, 'p'},
+    {"subsystems", required_argument, NULL, 'n'},
     {NULL, 0, NULL, 0}};
 
 constexpr auto CYCLE_TIME = std::chrono::microseconds(1000000LL); // 1 Hz
@@ -45,11 +44,15 @@ int main(int argc, char* argv[]){
 
   int option_char;
   int portno = 10823; /* port to listen on */
+  uint8_t num_fans = 1;
 
   // Parse and set command line arguments
   while ((option_char =
-              getopt_long(argc, argv, "hx:m:p:", g_long_options, NULL)) != -1) {
+              getopt_long(argc, argv, "hx:n:p:", g_long_options, NULL)) != -1) {
     switch (option_char) {
+      case 'n':  // number of fans
+        num_fans = atoi(optarg);
+        break;
       case 'p':  // listen-port
         portno = atoi(optarg);
         break;
@@ -72,8 +75,6 @@ int main(int argc, char* argv[]){
   }
 
   int sock_fd;
-  float temperature;
-  unsigned char buffer[BUFSIZE];
   struct sockaddr_in servaddr, cliaddr;
 
   // Creating socket file descriptor
@@ -97,6 +98,8 @@ int main(int argc, char* argv[]){
     perror("bind failed");
     exit(EXIT_FAILURE);
   }
+
+  unsigned char buffer[num_fans * sizeof(float)];
 
   while(1){
     auto start_time = std::chrono::system_clock::now();

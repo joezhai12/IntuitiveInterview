@@ -12,9 +12,8 @@
 #include <csignal>
 #include <chrono>
 #include <thread>
-#include "serialization/serialization.hpp"
-
-#define BUFSIZE 256
+#include <cstring>
+#include "subsystem.hpp"
 
 #define USAGE                                                          \
   "usage:\n"                                                           \
@@ -22,12 +21,14 @@
   "options:\n"                                                         \
   "  -s                  Server (Default: localhost)\n"                \
   "  -p                  Port (Default: 10823)\n"                      \
+  "  -n                  Number of Subsystems (Default: 1)\n"          \
   "  -h                  Show this help message\n"
 
 /* OPTIONS DESCRIPTOR ====================================================== */
 static struct option g_long_options[] = {
     {"server", required_argument, NULL, 's'},
     {"port", required_argument, NULL, 'p'},
+    {"subsystems", required_argument, NULL, 'n'},
     {"help", no_argument, NULL, 'h'},
     {NULL, 0, NULL, 0}};
 
@@ -46,10 +47,11 @@ int main(int argc, char* argv[]){
   uint16_t portno = 10823;
   int option_char = 0;
   std::string hostname = "localhost";
+  uint8_t num_subsystems = 1;
 
   // Parse and set command line arguments
   while ((option_char =
-              getopt_long(argc, argv, "p:s:m:hx", g_long_options, NULL)) != -1) {
+              getopt_long(argc, argv, "p:s:n:hx", g_long_options, NULL)) != -1) {
     switch (option_char) {
       default:
         fprintf(stderr, "%s", USAGE);
@@ -59,6 +61,13 @@ int main(int argc, char* argv[]){
         break;
       case 'p':  // listen-port
         portno = atoi(optarg);
+        break;
+      case 'n': // number of subsystems
+        if(optarg == 0){
+          std::cout << "Number of subsystems cannot be 0" << std::endl;
+          exit(1);
+        }
+        num_subsystems = atoi(optarg);
         break;
       case 'h':  // help
         fprintf(stdout, "%s", USAGE);
@@ -81,8 +90,6 @@ int main(int argc, char* argv[]){
   }
 
   int sock_fd;
-  float temperature;
-  unsigned char buffer[BUFSIZE];
   struct sockaddr_in servaddr;
 
   // Creating socket file descriptor
@@ -98,24 +105,22 @@ int main(int argc, char* argv[]){
   servaddr.sin_port = htons(portno);
   servaddr.sin_addr.s_addr = INADDR_ANY;
 
+  // Initialize subsystems and buffer
+  unsigned char buffer[sizeof(float) * num_subsystems];
+  SubsystemManager sub_manager(num_subsystems);
+
   while(1){
     auto start_time = std::chrono::system_clock::now();
-
-    // Get temperature as user input
-    std::cout << "Enter subsystem temperature: ";
-    std::cin >> temperature;
-    std::cout << std::endl;
 
     // send/receive data
     socklen_t len = sizeof(servaddr);
 
-    // Pack buffer with 32-bit float temperature
-    // packf32(buffer, temperature);
-    memcpy(&buffer[0], &temperature, sizeof(temperature));
+    sub_manager.cycle(&buffer[0]);
 
     sendto(sock_fd, (const char *)buffer, sizeof(buffer),
-            MSG_CONFIRM, (const struct sockaddr *) &servaddr,
-            len);
+          MSG_CONFIRM, (const struct sockaddr *) &servaddr,
+          len);
+
     printf("Temperature sent.\n");
 
     auto end_time = std::chrono::system_clock::now();
