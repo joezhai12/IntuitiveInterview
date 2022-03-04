@@ -79,6 +79,8 @@ fan_controller_EXTERNAL_OBJECTS =
 
 fan_control/fan_controller: fan_control/CMakeFiles/fan_controller.dir/src/main.cpp.o
 fan_control/fan_controller: fan_control/CMakeFiles/fan_controller.dir/build.make
+fan_control/fan_controller: fan_control/libfan_control_lib.a
+fan_control/fan_controller: tools/fan_config_reader/libfan_config_reader.a
 fan_control/fan_controller: fan_control/CMakeFiles/fan_controller.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/joe_zhai/Intuitive/.build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable fan_controller"
 	cd /home/joe_zhai/Intuitive/.build/fan_control && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/fan_controller.dir/link.txt --verbose=$(VERBOSE)

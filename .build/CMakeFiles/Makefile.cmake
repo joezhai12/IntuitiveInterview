@@ -13,6 +13,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../CMakeLists.txt"
   "../fan_control/CMakeLists.txt"
   "../test_subsystem/CMakeLists.txt"
+  "../tools/CMakeLists.txt"
+  "../tools/fan_config_reader/CMakeLists.txt"
   "/usr/share/cmake-3.16/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
@@ -43,12 +45,16 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tools/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tools/fan_config_reader/CMakeFiles/CMakeDirectoryInformation.cmake"
   "fan_control/CMakeFiles/CMakeDirectoryInformation.cmake"
   "test_subsystem/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/DependInfo.cmake"
   "fan_control/CMakeFiles/fan_controller.dir/DependInfo.cmake"
+  "fan_control/CMakeFiles/fan_control_lib.dir/DependInfo.cmake"
   "test_subsystem/CMakeFiles/subsystem.dir/DependInfo.cmake"
   )

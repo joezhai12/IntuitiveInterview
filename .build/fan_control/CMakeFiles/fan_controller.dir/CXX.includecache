@@ -6,6 +6,26 @@
 
 #IncludeRegexTransform: 
 
+../fan_control/include/fan_controller.hpp
+stdint.h
+-
+
+../fan_control/include/fan_manager.hpp
+vector
+-
+stdint.h
+-
+fan_controller.hpp
+../fan_control/include/fan_controller.hpp
+
+../tools/fan_config_reader/include/fan_config_reader.hpp
+string
+-
+vector
+-
+stdint.h
+-
+
 /home/joe_zhai/Intuitive/fan_control/src/main.cpp
 iostream
 -
@@ -39,4 +59,8 @@ chrono
 -
 thread
 -
+fan_manager.hpp
+/home/joe_zhai/Intuitive/fan_control/src/fan_manager.hpp
+fan_config_reader.hpp
+/home/joe_zhai/Intuitive/fan_control/src/fan_config_reader.hpp
 

@@ -6,3 +6,4 @@ Todo
 - create module to set fan speed and print duty cycle %
 - add option to set subsystem/fan #
 - add option to set max PWM count
+  - set fan options in config file and read in

@@ -53,18 +53,21 @@ CMAKE_BINARY_DIR = /home/joe_zhai/Intuitive/.build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: tools/all
 all: fan_control/all
 all: test_subsystem/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
+preinstall: tools/preinstall
 preinstall: fan_control/preinstall
 preinstall: test_subsystem/preinstall
 
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: tools/clean
 clean: fan_control/clean
 clean: test_subsystem/clean
 
@@ -75,6 +78,7 @@ clean: test_subsystem/clean
 
 # Recursive "all" directory target.
 fan_control/all: fan_control/CMakeFiles/fan_controller.dir/all
+fan_control/all: fan_control/CMakeFiles/fan_control_lib.dir/all
 
 .PHONY : fan_control/all
 
@@ -85,6 +89,7 @@ fan_control/preinstall:
 
 # Recursive "clean" directory target.
 fan_control/clean: fan_control/CMakeFiles/fan_controller.dir/clean
+fan_control/clean: fan_control/CMakeFiles/fan_control_lib.dir/clean
 
 .PHONY : fan_control/clean
 
@@ -107,18 +112,82 @@ test_subsystem/clean: test_subsystem/CMakeFiles/subsystem.dir/clean
 .PHONY : test_subsystem/clean
 
 #=============================================================================
+# Directory level rules for directory tools
+
+# Recursive "all" directory target.
+tools/all: tools/fan_config_reader/all
+
+.PHONY : tools/all
+
+# Recursive "preinstall" directory target.
+tools/preinstall: tools/fan_config_reader/preinstall
+
+.PHONY : tools/preinstall
+
+# Recursive "clean" directory target.
+tools/clean: tools/fan_config_reader/clean
+
+.PHONY : tools/clean
+
+#=============================================================================
+# Directory level rules for directory tools/fan_config_reader
+
+# Recursive "all" directory target.
+tools/fan_config_reader/all: tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/all
+
+.PHONY : tools/fan_config_reader/all
+
+# Recursive "preinstall" directory target.
+tools/fan_config_reader/preinstall:
+
+.PHONY : tools/fan_config_reader/preinstall
+
+# Recursive "clean" directory target.
+tools/fan_config_reader/clean: tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/clean
+
+.PHONY : tools/fan_config_reader/clean
+
+#=============================================================================
+# Target rules for target tools/fan_config_reader/CMakeFiles/fan_config_reader.dir
+
+# All Build rule for target.
+tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/all:
+	$(MAKE) -f tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/build.make tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/depend
+	$(MAKE) -f tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/build.make tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joe_zhai/Intuitive/.build/CMakeFiles --progress-num=1,2 "Built target fan_config_reader"
+.PHONY : tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/all
+
+# Build rule for subdir invocation for target.
+tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe_zhai/Intuitive/.build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe_zhai/Intuitive/.build/CMakeFiles 0
+.PHONY : tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/rule
+
+# Convenience name for target.
+fan_config_reader: tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/rule
+
+.PHONY : fan_config_reader
+
+# clean rule for target.
+tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/clean:
+	$(MAKE) -f tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/build.make tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/clean
+.PHONY : tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/clean
+
+#=============================================================================
 # Target rules for target fan_control/CMakeFiles/fan_controller.dir
 
 # All Build rule for target.
-fan_control/CMakeFiles/fan_controller.dir/all:
+fan_control/CMakeFiles/fan_controller.dir/all: tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/all
+fan_control/CMakeFiles/fan_controller.dir/all: fan_control/CMakeFiles/fan_control_lib.dir/all
 	$(MAKE) -f fan_control/CMakeFiles/fan_controller.dir/build.make fan_control/CMakeFiles/fan_controller.dir/depend
 	$(MAKE) -f fan_control/CMakeFiles/fan_controller.dir/build.make fan_control/CMakeFiles/fan_controller.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joe_zhai/Intuitive/.build/CMakeFiles --progress-num=1,2 "Built target fan_controller"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joe_zhai/Intuitive/.build/CMakeFiles --progress-num=6,7 "Built target fan_controller"
 .PHONY : fan_control/CMakeFiles/fan_controller.dir/all
 
 # Build rule for subdir invocation for target.
 fan_control/CMakeFiles/fan_controller.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe_zhai/Intuitive/.build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe_zhai/Intuitive/.build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 fan_control/CMakeFiles/fan_controller.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe_zhai/Intuitive/.build/CMakeFiles 0
 .PHONY : fan_control/CMakeFiles/fan_controller.dir/rule
@@ -134,13 +203,40 @@ fan_control/CMakeFiles/fan_controller.dir/clean:
 .PHONY : fan_control/CMakeFiles/fan_controller.dir/clean
 
 #=============================================================================
+# Target rules for target fan_control/CMakeFiles/fan_control_lib.dir
+
+# All Build rule for target.
+fan_control/CMakeFiles/fan_control_lib.dir/all:
+	$(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/depend
+	$(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joe_zhai/Intuitive/.build/CMakeFiles --progress-num=3,4,5 "Built target fan_control_lib"
+.PHONY : fan_control/CMakeFiles/fan_control_lib.dir/all
+
+# Build rule for subdir invocation for target.
+fan_control/CMakeFiles/fan_control_lib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe_zhai/Intuitive/.build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 fan_control/CMakeFiles/fan_control_lib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe_zhai/Intuitive/.build/CMakeFiles 0
+.PHONY : fan_control/CMakeFiles/fan_control_lib.dir/rule
+
+# Convenience name for target.
+fan_control_lib: fan_control/CMakeFiles/fan_control_lib.dir/rule
+
+.PHONY : fan_control_lib
+
+# clean rule for target.
+fan_control/CMakeFiles/fan_control_lib.dir/clean:
+	$(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/clean
+.PHONY : fan_control/CMakeFiles/fan_control_lib.dir/clean
+
+#=============================================================================
 # Target rules for target test_subsystem/CMakeFiles/subsystem.dir
 
 # All Build rule for target.
 test_subsystem/CMakeFiles/subsystem.dir/all:
 	$(MAKE) -f test_subsystem/CMakeFiles/subsystem.dir/build.make test_subsystem/CMakeFiles/subsystem.dir/depend
 	$(MAKE) -f test_subsystem/CMakeFiles/subsystem.dir/build.make test_subsystem/CMakeFiles/subsystem.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joe_zhai/Intuitive/.build/CMakeFiles --progress-num=3,4,5 "Built target subsystem"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joe_zhai/Intuitive/.build/CMakeFiles --progress-num=8,9,10 "Built target subsystem"
 .PHONY : test_subsystem/CMakeFiles/subsystem.dir/all
 
 # Build rule for subdir invocation for target.

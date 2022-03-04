@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfan_config_reader.a  CMakeFiles/fan_config_reader.dir/src/fan_config_reader.cpp.o
+/usr/bin/ranlib libfan_config_reader.a

@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/joe_zhai/Intuitive/fan_control/include -I/home/joe_zhai/Intuitive/tools/fan_config_reader/include 
 

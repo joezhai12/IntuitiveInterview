@@ -14,6 +14,10 @@
 #include <cstring>
 #include <chrono>
 #include <thread>
+#include "fan_manager.hpp"
+#include "fan_config_reader.hpp"
+
+#define MAX_SUBS 256 // maximum subsystems defined as uint8_t
 
 #define USAGE                                                        \
   "usage:\n"                                                         \
@@ -99,7 +103,13 @@ int main(int argc, char* argv[]){
     exit(EXIT_FAILURE);
   }
 
-  unsigned char buffer[num_fans * sizeof(float)];
+  // parse fan configuration file and set max pwm counts
+  std::vector<std::pair<uint32_t, std::string>> fan_config;
+  read_fan_config("./config/fan_configuration.csv", fan_config);
+
+  std::vector<uint32_t> max_pwm_counts(num_fans, 100);
+  unsigned char buffer[MAX_SUBS*sizeof(float)];
+  FanManager fan_manager(max_pwm_counts);
 
   while(1){
     auto start_time = std::chrono::system_clock::now();
@@ -109,15 +119,16 @@ int main(int argc, char* argv[]){
     int n = recvfrom(sock_fd, (char *)buffer, sizeof(buffer),
                 MSG_WAITALL, ( struct sockaddr *) &cliaddr,
                 &len);
-    // buffer[n] = '\0';
+    if(n < 0){
+      std::cout << "Fan Controller: Error receiving subsystem temperatures..." << std::endl;
+      exit(EXIT_FAILURE);
+    }
+    else if(n == 0){
+      std::cout << "Fan Controller: No data received..." << std::endl;
+      continue;
+    }
 
-    // Unpack buffer to get temperature
-    // temperature = unpackf32(buffer);
-    memcpy(&temperature, &buffer[0], sizeof(temperature));
-
-    std::cout << "temperature: " << temperature << std::endl;
-
-    // TODO: write to register
+    fan_manager.cycle(&buffer[0], n);
 
     auto end_time = std::chrono::system_clock::now();
 

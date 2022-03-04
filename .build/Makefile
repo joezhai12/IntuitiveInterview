@@ -157,6 +157,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named fan_config_reader
+
+# Build rule for target.
+fan_config_reader: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 fan_config_reader
+.PHONY : fan_config_reader
+
+# fast build rule for target.
+fan_config_reader/fast:
+	$(MAKE) -f tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/build.make tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/build
+.PHONY : fan_config_reader/fast
+
+#=============================================================================
 # Target rules for targets named fan_controller
 
 # Build rule for target.
@@ -168,6 +181,19 @@ fan_controller: cmake_check_build_system
 fan_controller/fast:
 	$(MAKE) -f fan_control/CMakeFiles/fan_controller.dir/build.make fan_control/CMakeFiles/fan_controller.dir/build
 .PHONY : fan_controller/fast
+
+#=============================================================================
+# Target rules for targets named fan_control_lib
+
+# Build rule for target.
+fan_control_lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 fan_control_lib
+.PHONY : fan_control_lib
+
+# fast build rule for target.
+fan_control_lib/fast:
+	$(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/build
+.PHONY : fan_control_lib/fast
 
 #=============================================================================
 # Target rules for targets named subsystem
@@ -194,7 +220,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... fan_config_reader"
 	@echo "... fan_controller"
+	@echo "... fan_control_lib"
 	@echo "... subsystem"
 .PHONY : help
 

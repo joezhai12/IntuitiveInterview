@@ -1,2 +1,3 @@
 /home/joe_zhai/Intuitive/build/bin/fan_controller
 /home/joe_zhai/Intuitive/build/bin/subsystem
+/home/joe_zhai/Intuitive/build/config/fan_configuration.csv

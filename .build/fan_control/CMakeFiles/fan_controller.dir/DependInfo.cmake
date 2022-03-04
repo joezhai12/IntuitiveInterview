@@ -10,10 +10,14 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../fan_control/include"
+  "../tools/fan_config_reader/include"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/joe_zhai/Intuitive/.build/fan_control/CMakeFiles/fan_control_lib.dir/DependInfo.cmake"
+  "/home/joe_zhai/Intuitive/.build/tools/fan_config_reader/CMakeFiles/fan_config_reader.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

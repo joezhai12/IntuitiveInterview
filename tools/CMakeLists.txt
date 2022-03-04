@@ -1,0 +1,1 @@
+add_subdirectory(fan_config_reader)

@@ -171,6 +171,75 @@ fan_controller/fast:
 	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f fan_control/CMakeFiles/fan_controller.dir/build.make fan_control/CMakeFiles/fan_controller.dir/build
 .PHONY : fan_controller/fast
 
+# Convenience name for target.
+fan_control/CMakeFiles/fan_control_lib.dir/rule:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f CMakeFiles/Makefile2 fan_control/CMakeFiles/fan_control_lib.dir/rule
+.PHONY : fan_control/CMakeFiles/fan_control_lib.dir/rule
+
+# Convenience name for target.
+fan_control_lib: fan_control/CMakeFiles/fan_control_lib.dir/rule
+
+.PHONY : fan_control_lib
+
+# fast build rule for target.
+fan_control_lib/fast:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/build
+.PHONY : fan_control_lib/fast
+
+src/fan_controller.o: src/fan_controller.cpp.o
+
+.PHONY : src/fan_controller.o
+
+# target to build an object file
+src/fan_controller.cpp.o:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/src/fan_controller.cpp.o
+.PHONY : src/fan_controller.cpp.o
+
+src/fan_controller.i: src/fan_controller.cpp.i
+
+.PHONY : src/fan_controller.i
+
+# target to preprocess a source file
+src/fan_controller.cpp.i:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/src/fan_controller.cpp.i
+.PHONY : src/fan_controller.cpp.i
+
+src/fan_controller.s: src/fan_controller.cpp.s
+
+.PHONY : src/fan_controller.s
+
+# target to generate assembly for a file
+src/fan_controller.cpp.s:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/src/fan_controller.cpp.s
+.PHONY : src/fan_controller.cpp.s
+
+src/fan_manager.o: src/fan_manager.cpp.o
+
+.PHONY : src/fan_manager.o
+
+# target to build an object file
+src/fan_manager.cpp.o:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/src/fan_manager.cpp.o
+.PHONY : src/fan_manager.cpp.o
+
+src/fan_manager.i: src/fan_manager.cpp.i
+
+.PHONY : src/fan_manager.i
+
+# target to preprocess a source file
+src/fan_manager.cpp.i:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/src/fan_manager.cpp.i
+.PHONY : src/fan_manager.cpp.i
+
+src/fan_manager.s: src/fan_manager.cpp.s
+
+.PHONY : src/fan_manager.s
+
+# target to generate assembly for a file
+src/fan_manager.cpp.s:
+	cd /home/joe_zhai/Intuitive/.build && $(MAKE) -f fan_control/CMakeFiles/fan_control_lib.dir/build.make fan_control/CMakeFiles/fan_control_lib.dir/src/fan_manager.cpp.s
+.PHONY : src/fan_manager.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -211,6 +280,13 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... fan_controller"
+	@echo "... fan_control_lib"
+	@echo "... src/fan_controller.o"
+	@echo "... src/fan_controller.i"
+	@echo "... src/fan_controller.s"
+	@echo "... src/fan_manager.o"
+	@echo "... src/fan_manager.i"
+	@echo "... src/fan_manager.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
