@@ -9,6 +9,8 @@
 ../fan_control/include/fan_controller.hpp
 stdint.h
 -
+string
+-
 
 /home/joe_zhai/Intuitive/fan_control/src/fan_controller.cpp
 fan_controller.hpp

@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <stdint.h>
+#include <string>
 
 #include "fan_controller.hpp"
 
@@ -10,7 +11,7 @@ constexpr float TEMP_100PCT_DUTY_CYCLE = 75.0f; // Celsius
 
 class FanManager{
 public:
-  FanManager(std::vector<uint32_t> max_pwm_counts);
+  FanManager(std::vector<std::pair<uint32_t, std::string>> fan_config);
 
   float getDutyCycle();
 

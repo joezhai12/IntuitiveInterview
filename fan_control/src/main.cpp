@@ -24,14 +24,12 @@
   "  echoserver [options]\n"                                         \
   "options:\n"                                                       \
   "  -p                  Port (Default: 10823)\n"                    \
-  "  -n                  Number of Fans (Default: 1)\n"              \
   "  -h                  Show this help message\n"
 
 /* OPTIONS DESCRIPTOR ====================================================== */
 static struct option g_long_options[] = {
     {"help", no_argument, NULL, 'h'},
     {"port", required_argument, NULL, 'p'},
-    {"subsystems", required_argument, NULL, 'n'},
     {NULL, 0, NULL, 0}};
 
 constexpr auto CYCLE_TIME = std::chrono::microseconds(1000000LL); // 1 Hz
@@ -48,15 +46,11 @@ int main(int argc, char* argv[]){
 
   int option_char;
   int portno = 10823; /* port to listen on */
-  uint8_t num_fans = 1;
 
   // Parse and set command line arguments
   while ((option_char =
-              getopt_long(argc, argv, "hx:n:p:", g_long_options, NULL)) != -1) {
+              getopt_long(argc, argv, "hx:p:", g_long_options, NULL)) != -1) {
     switch (option_char) {
-      case 'n':  // number of fans
-        num_fans = atoi(optarg);
-        break;
       case 'p':  // listen-port
         portno = atoi(optarg);
         break;
@@ -107,9 +101,8 @@ int main(int argc, char* argv[]){
   std::vector<std::pair<uint32_t, std::string>> fan_config;
   read_fan_config("./config/fan_configuration.csv", fan_config);
 
-  std::vector<uint32_t> max_pwm_counts(num_fans, 100);
   unsigned char buffer[MAX_SUBS*sizeof(float)];
-  FanManager fan_manager(max_pwm_counts);
+  FanManager fan_manager(fan_config);
 
   while(1){
     auto start_time = std::chrono::system_clock::now();

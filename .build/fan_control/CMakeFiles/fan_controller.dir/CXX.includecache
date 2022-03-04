@@ -9,11 +9,15 @@
 ../fan_control/include/fan_controller.hpp
 stdint.h
 -
+string
+-
 
 ../fan_control/include/fan_manager.hpp
 vector
 -
 stdint.h
+-
+string
 -
 fan_controller.hpp
 ../fan_control/include/fan_controller.hpp

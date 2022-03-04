@@ -2,10 +2,15 @@
 #include <cstring>
 #include <iostream>
 
-FanManager::FanManager(std::vector<uint32_t> max_pwm_counts){
-  for(int i = 0; i < max_pwm_counts.size(); ++i){
-    uint32_t default_pwm = static_cast<uint32_t>(max_pwm_counts[i] * 0.2);
-    fans_.push_back(FanController(default_pwm, max_pwm_counts[i], static_cast<uint8_t>(i)));
+FanManager::FanManager(std::vector<std::pair<uint32_t, std::string>> fan_config){
+  for(int i = 0; i < fan_config.size(); ++i){
+    uint32_t cur_pwm = fan_config[i].first;
+    std::string cur_address = fan_config[i].second;
+    uint32_t default_pwm = static_cast<uint32_t>(cur_pwm * 0.2);
+    fans_.push_back(FanController(default_pwm,
+                                  cur_pwm,
+                                  cur_address,
+                                  static_cast<uint8_t>(i)));
 
     // write to register at 20% duty cycle just in case we are waiting on
     // subsystem data
@@ -34,19 +39,24 @@ void FanManager::cycle(unsigned char *buffer, int bytes_recvd){
     // Unpack buffer to get temperature
     memcpy(&cur_temperature, &buffer[i*sizeof(float)], sizeof(float));
 
-    std::cout << "temperature " << i << ": " << cur_temperature << std::endl;
+    std::cout << "Subsystem " << i
+              << " temperature: " << cur_temperature
+              << std::endl;
 
     cur_max_temperature = std::max(cur_max_temperature, cur_temperature);
   }
 
   max_subsystem_temp_ = cur_max_temperature;
 
-  std::cout << "Current max subsystem temperature: " << cur_max_temperature << std::endl;
+  std::cout << "Current max subsystem temperature: "
+            << cur_max_temperature << std::endl;
 
   // determine duty cycle %
   float duty_cycle = getDutyCycle();
 
-  std::cout << "Setting duty cycle to " << duty_cycle * 100.0f << "%" << std::endl;
+  std::cout << "Setting duty cycle to "
+            << duty_cycle * 100.0f << "%"
+            << std::endl;
 
   // set all fan pwm counts
   for(int i = 0; i < fans_.size(); ++i){
